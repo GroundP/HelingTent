@@ -23,6 +23,31 @@
         </li>
         <li>
             <span class="col1">패키지 : </span>
+            <input list="package" name="package">
+		<datalist id="package">
+			<!-- <option value="HTML">
+			<option value="CSS">
+			<option value="JAVA">
+			<option value="C++"> -->
+<?php
+    $con = mysqli_connect("localhost", "root", "fmlskdk!23", "db");
+    $sql = "select * from package";
+    $result = mysqli_query($con, $sql);
+
+    if (!$result)
+        echo "게시판 DB 테이블(board)이 생성 전이거나 아직 게시글이 없습니다!";
+    else
+    {
+        while( $row = mysqli_fetch_array($result) )
+        {
+            $package_name = $row["package_name"];
+?>
+            <option value="<?=$package_name?>"aaa</option>
+<?php
+        }
+    }
+?>
+		</datalist>
             <span class="col2"><input name="subject" type="text"></span>
         </li>
         <li>
