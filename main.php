@@ -48,7 +48,7 @@
         {
             $package_name = $row["package_name"];
 ?>
-            <option value="<?=$package_name?>"aaa</option>
+            <option value="<?=$package_name?>"
 <?php
         }
     }
@@ -56,11 +56,11 @@
 		</datalist>
         </li>
         <li>
-            <input type="checkbox" name="addTime" value="addTime" checked>추가 시간 : 
+            <input type="checkbox" name="chk_add_time" value="add_time" checked>추가 시간 : 
             <span class="col2"><input name="subject" type="number" min="1" max="10" value="0"></span>
         </li>
         <li>
-            <input type="checkbox" name="add_time" value="add_time" checked>추가 물품 : 
+            <input type="checkbox" name="chk_add_item" value="add_time" checked>추가 물품 : 
             <input list="add_item" name="add_item">
             <datalist id="add_item">
 <?php
@@ -82,12 +82,12 @@
     }
 ?>
 		</datalist>
-            <span class="col2"><input name="subject" type="number" min="1" max="10" value="0"></span>
+        <span class="col2"><input name="subject" type="number" min="1" max="10" value="0"></span>
         </li>
         <li id="text_area">	
             <span class="col1">요청사항 : </span>
             <span class="col2">
-                <textarea name="content"></textarea>
+                <textarea name="Request"></textarea>
             </span>
         </li>
         </ul>
