@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>힐링텐트</title>
 <link rel="stylesheet" type="text/css" href="./css/common.css">
-<link rel="stylesheet" type="text/css" href="./css/main.css">
+<link rel="stylesheet" type="text/css" href="./css/board.css">
 </head>
 <body>
 <header>

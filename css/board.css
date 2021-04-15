@@ -9,6 +9,7 @@
 #board_form #text_area {	position: relative;	height: 158px; }
 #board_form #text_area .col1 { position: absolute; top: 10px; }
 #board_form #text_area .col2 { position: absolute; left: 166px; }
+#board_form #text_area .col3 { position: absolute; left: 266px; }
 #board_box .buttons { text-align: right; margin: 20px 0 40px 0; }
 #board_box .buttons li { display: inline; }
 #board_box .buttons button { padding: 5px 10px; cursor: pointer; }

@@ -1,3 +1,9 @@
+<script>
+    function alert() 
+    {
+        alert("예약 되었습니다!");
+    }
+</script>
 <?php
     $name   = $_POST["name"];
     $phone = $_POST["phone"];
@@ -24,6 +30,7 @@
 
     mysqli_close($con);     
 
+    echo "alert()";
     echo "
 	      <script>
 	          location.href = 'index.php';
