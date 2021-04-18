@@ -17,7 +17,8 @@
         }
     }
 
-    function check_input() {
+    function check_input() 
+    {
         if (!document.client_form.name.value) {
             alert("이름을 입력하세요!");
             document.client_form.name.focus();
@@ -36,9 +37,12 @@
 
         var confirmFlag = confirm("예약하시겠습니까?");
 
-        if (confirmFlag) {
+        if (confirmFlag) 
+        {
             document.client_form.submit();
-        } else {
+        } 
+        else 
+        {
             return;
         }
     }
@@ -47,15 +51,16 @@
     <form name="client_form" method="post" action="client_insert.php" enctype="multipart/form-data">
         <ul id="board_form">
             <li>
-                <span class="col1">이름 : </span>
+                <span class="col1">*이름 : </span>
                 <span class="col2"><input name="name" type="text"></span>
             </li>
             <li>
-                <span class="col1">연락처 : </span>
-                <span class="col2"><input id = "phone" name="phone" type="tel" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></span>
+                <span class="col1">*연락처 : </span>
+                <span class="col2">
+                <input id = "phone" name="phone" type="tel" placeholder="010-1234-5678" pattern="[0-9] {3}-[0-9] {4}-[0-9] {4}"/></span>
             </li>
             <li>
-                <span class="col1">패키지 : </span>
+                <span class="col1">*패키지 : </span>
                 <input list="package" name="package">
                 <datalist id="package">
                     <?php
@@ -69,7 +74,7 @@
                         while ($row = mysqli_fetch_array($result)) {
                             $package_name = $row["package_name"];
                     ?>
-                            <option value="<?= $package_name ?>" 
+                            <option value="<?= $package_name ?>"> 
                     <?php
                         }
                             }
@@ -78,26 +83,24 @@
             </li>
             <li>
                 <span class="col1">추가 시간 : </span>
-                <span class="col2"><input name="add_time" type="number" min="1" max="10" value="0" disabled></span>
-                <span class="col3"><input type="checkbox" name="chk_add_time" onclick="checkDisable(this.form, true)"></span>
+                <span class="col2"><input name="add_time" type="number" min="0" max="10" value="0"></span>
             </li>
             <li>
                 <span class="col1">추가 물품 : </span>
-                <span class="col2"><input list="add_item" name="add_item" disabled></span>
-                <span class="col3"><input type="checkbox" name="chk_add_item" onclick="checkDisable(this.form, false)"></span>
+                <span class="col2"><input list="add_item" name="add_item"></span>
                     <datalist id="add_item">
                     <?php
                     $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-                    $sql = "select * from stock";
+                    $sql = "select * from add_items";
                     $result = mysqli_query($con, $sql);
 
                     if (!$result)
                         echo "DB 테이블(client)이 생성 전이거나 데이터가 존재하지 않습니다!";
                     else {
                         while ($row = mysqli_fetch_array($result)) {
-                            $item_name = $row["item"];
+                            $item_name = $row["add_item"];
                     ?>
-                            <option value="<?= $item_name ?>" 
+                            <option value="<?= $item_name ?>">
                     <?php
                         }
                     }
