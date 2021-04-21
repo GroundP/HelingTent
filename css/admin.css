@@ -1,5 +1,5 @@
 /* 관리자 회원 목록보기(admin_list.php) */
-#admin_box { width: 800px; margin: 0 auto;}
+#admin_box { width: 900px; margin: 0 auto;}
 #admin_box h3#member_title { margin: 30px 0 10px 0;}
 #client_list { margin: 10px 0 30px 0;}
 #client_list li:nth-child(1) { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee;}
@@ -7,21 +7,22 @@
 #client_list span { display: inline-block; text-align: center;}
 #client_list input { width: 40px; height: 20px; text-align: center;}
 #client_list button { padding: 3px 10px;}
-#client_list .col1 { width: 80px; }
-#client_list .col2 { width: 120px; }
-#client_list .col3 { width: 180px; }
-#client_list .col4 { width: 80px; }
+#client_list .col1 { width: 50px; }
+#client_list .col2 { width: 80px; }
+#client_list .col3 { width: 120px; }
+#client_list .col4 { width: 200px; }
 #client_list .col5 { width: 80px; }
 #client_list .col6 { width: 80px; }
-#client_list .col7 { width: 70px; }
+#client_list .col7 { width: 80px; }
 #client_list .col8 { width: 70px; }
+#client_list .col9 { width: 70px; }
 #admin_box h3#package_title { margin: 30px 0 10px 0;}
 #package_list { margin: 10px 0 50px 0;}
 #package_list .col1 { width: 50px; }
-#package_list .col2 { width: 280px; }
+#package_list .col2 { width: 340px; }
 #package_list .col3 { width: 50px; }
-#package_list .col4 { width: 100px;}
-#package_list .col5 { width: 100px; }
+#package_list .col4 { width: 120px;}
+#package_list .col5 { width: 120px; }
 #package_list .col6 { width: 80px; }
 #package_list .col7 { width: 80px; }
 #package_list li.title { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee; }
@@ -32,8 +33,8 @@
 #admin_box h3#stock_title { margin: 30px 0 10px 0;}
 #stock_list { margin: 10px 0 50px 0;}
 #stock_list .col1 { width: 50px; }
-#stock_list .col2 { width: 400px; }
-#stock_list .col3 { width: 120px; }
+#stock_list .col2 { width: 450px; }
+#stock_list .col3 { width: 200px; }
 #stock_list .col4 { width: 80px; }
 #stock_list .col5 { width: 80px; }
 #stock_list li.title { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee; }

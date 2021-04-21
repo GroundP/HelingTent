@@ -61,7 +61,7 @@
             </li>
             <li>
                 <span class="col1">*패키지 : </span>
-                <input list="package" name="package">
+                <input type="text" list="package" name="package">
                 <datalist id="package">
                     <?php
                     $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
