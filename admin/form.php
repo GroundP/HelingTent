@@ -57,6 +57,7 @@ while($row = mysqli_fetch_array($result))
 			<span class="col7"><?=$aClientPrice?></span>
 			<span class="col8"><button type="submit">수정</button></span>
 			<span class="col9"><button type="button" onclick="location.href='client_delete.php?id=<?=$aClientId?>'">삭제</button></span>
+			</form>
 		</li>
 <?php
    }
