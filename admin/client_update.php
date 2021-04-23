@@ -5,18 +5,18 @@ $clientName =  $_POST["name"];
 $clientPhone = $_POST["phone"];
 $clientPackage = $_POST["package"];
 
-echo $clientId."\n".$clientName."\n".$clientPhone;
-
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql    = "update client SET name='$clientName', phone_number='$clientPhone' where id=$clientId";
+$sql = "update client as c, package as p SET c.name='$clientName', c.phone_number='$clientPhone', c.package_id = p.id where c.id = $clientId and p.package_name = '$clientPackage'";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )
 {
-    echo "실패!";
-    echo mysqli_error($con);
+    $res = mysqli_error($con);
+    $msg = "실패했습니다.(".$res.")";
 }
 else
 {
-    echo "성공!";
+    $msg = "성공했습니다!";
 }
+
+echo "<script>alert('{$msg}');</script>";
