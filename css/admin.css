@@ -9,7 +9,7 @@
 #client_list button { padding: 3px 10px;}
 #client_list .col1 { width: 50px; }
 #client_list .col2 { width: 80px; }
-#client_list .col3 { width: 120px; }
+#client_list .col3 { width: 140px; }
 #client_list .col4 { width: 200px; }
 #client_list .col5 { width: 80px; }
 #client_list .col6 { width: 80px; }
@@ -25,18 +25,20 @@
 #package_list .col5 { width: 120px; }
 #package_list .col6 { width: 80px; }
 #package_list .col7 { width: 80px; }
+#package_list input { width: 40px; height: 20px; text-align: center;}
 #package_list li.title { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee; }
 #package_list li.title span.col4 { text-align: center; }
 #package_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
 #package_list span { display: inline-block; text-align: center; }
 #package_list button { margin: 20px 0 0 20px; padding: 5px 10px;}
 #admin_box h3#stock_title { margin: 30px 0 10px 0;}
-#stock_list { margin: 10px 0 50px 0;}
+#stock_list { margin: 10px 0 30px 0;}
 #stock_list .col1 { width: 50px; }
 #stock_list .col2 { width: 450px; }
 #stock_list .col3 { width: 200px; }
 #stock_list .col4 { width: 80px; }
 #stock_list .col5 { width: 80px; }
+#stock_list input { width: 40px; height: 20px; text-align: center;}
 #stock_list li.title { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee; }
 #stock_list li.title span.col4 { text-align: center; }
 #stock_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }

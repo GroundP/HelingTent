@@ -1,4 +1,14 @@
 <?php
+function finishInsert($msg)
+{
+    echo "<script>alert('{$msg}');</script>";
+    echo "
+	      <script>
+	          location.href = 'index.php';
+	      </script>
+	  ";
+}
+
     $name   = $_POST["name"];
     $phone = $_POST["phone"];
     $package = $_POST["package"];
@@ -15,7 +25,7 @@
     $bWeekend = ($day == 0 || $day == 5 || $day == 6);
 
     $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-    $sql = "select * from package where package_name = '".$package."'";
+    $sql = "select * from package where name = '".$package."'";
     
     $result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
     if ( !$result )
@@ -25,6 +35,10 @@
     }
 
     $row = mysqli_fetch_array($result);
+    if ( empty($row['id']) )
+    {
+        finishInsert("패키지 입력이 잘못되었습니다.");
+    }
     $package_id = $row['id'];
     $price = $bWeekend ? $row['weekend_price'] : $row['weekday_price'];
     $price += $bWeekend ? $add_time * 5000 : $add_time * 3000;
@@ -36,7 +50,7 @@
     else
     {
         $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-        $sql = "select * from add_items where add_item = '".$add_item."'";
+        $sql = "select * from add_items where name = '".$add_item."'";
         
         $result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
         if ( !$result )
@@ -45,8 +59,8 @@
             exit;
         }
         $row = mysqli_fetch_array($result);
-        $add_item_id = $row['id'];
-        $price += $row['price'];
+        $add_item_id = empty($row['id']) ? 0 : $row['id'];
+        $price += empty($row['price']) ? 0 : $row['price'];
     }
 
 	$sql = "insert into client(name, phone_number, package_id, add_time, add_item_id,
@@ -54,6 +68,7 @@
 	$sql .= "values('$name', '$phone', $package_id, $add_time, $add_item_id, '$startTime', '$endTime', '$request', $price, now());";
 
     echo $sql;
+    echo "<br>";
 
 	$result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
     if ( !$result )

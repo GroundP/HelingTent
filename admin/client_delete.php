@@ -6,7 +6,7 @@ $clientPhone = $_POST["phone"];
 $clientPackage = $_POST["package"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update client as c, package as p SET c.name='$clientName', c.phone_number='$clientPhone', c.package_id = p.id where c.id = $clientId and p.name = '$clientPackage'";
+$sql = "delete from client where id = $clientId";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

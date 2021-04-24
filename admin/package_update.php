@@ -1,12 +1,13 @@
 <?php
 
-$clientId = $_GET["id"];
-$clientName =  $_POST["name"];
-$clientPhone = $_POST["phone"];
-$clientPackage = $_POST["package"];
+$id = $_GET["id"];
+$name =  $_POST["pkg_name"];
+$time = $_POST["pkg_time"];
+$weekday_price = $_POST["pkg_weekday"];
+$weekday_price = $_POST["pkg_weekday"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update client as c, package as p SET c.name='$clientName', c.phone_number='$clientPhone', c.package_id = p.id where c.id = $clientId and p.name = '$clientPackage'";
+$sql = "update package SET name='$clientName', c.phone_number='$clientPhone', c.package_id = p.id where c.id = $clientId and p.package_name = '$clientPackage'";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

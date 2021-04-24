@@ -9,13 +9,13 @@
 </head>
 <body>
 <header>
-    <?php include "header.php";?>
+    <?php include "admin_header.php";?>
 </header>
 <section>
-	<?php include "form.php";?>
+	<?php include "admin_form.php";?>
 </section> 
 <footer>
-    <?php include "footer.php";?>
+    <?php include "../footer.php";?>
 </footer>
 </body>
 </html>

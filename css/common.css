@@ -30,5 +30,5 @@ footer { height: 100px; background-color: #2c2a29; }
 #footer_content { position: relative; width: 1000px; margin: 0 auto; color: #dddddd; }
 #footer_logo { position: absolute; top: 30px; left: 50px; font-size: 16px; }
 #footer_logo span { color: yellow; }
-#download { position: absolute; top: 20px; left: 400px; }
+#download { position: absolute; top: 20px; left: 300px; }
 #author { position: absolute; top: 20px; left: 700px; }
