@@ -77,8 +77,23 @@ function finishInsert($msg)
         exit;
     }
 
-    mysqli_close($con);
+    $sql = "select * from package_stock as p LEFT JOIN stock as s ON p.stock_id = s.id where p.package_id = $package_id";
+    $result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
+    
+    while($row = mysqli_fetch_array($result))
+    {
+        if ( empty($row["id"]) )
+            break;
 
+        $stock_id = $row["stock_id"];
+        $stock_quantity = $row["stock_quantity"];
+        $sql = "update stock set quantity = quantity - $stock_quantity where id = $stock_id";
+
+        mysqli_query($con, $sql);
+    }
+
+    mysqli_close($con);
+    
     echo "<script>alert('예약 되었습니다!');</script>";
     echo "
 	      <script>

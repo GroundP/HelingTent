@@ -1,3 +1,18 @@
+<script>
+	 function onReset() 
+    {
+        var confirmFlag = confirm("손님 정보가 모두 사라집니다. 계속하시겠습니까?");
+
+        if (confirmFlag) 
+        {
+            document.clientReset.submit();
+        } 
+        else 
+        {
+            return;
+        }
+    }
+</script>
 <section>
 	<div id="admin_box">
 		<h3 id = member_title>관리자 모드 > 손님 관리</h3>
@@ -69,6 +84,12 @@
 <?php
    }
 ?>
+
+		<form name="clientReset" action="client_reset.php">
+			<div class="button">
+				<span><button type="button" onclick="onReset()">초기화</button></span>
+			</div>
+		</form>
 		</ul>
 
 		<h3 id = "package_title">
@@ -148,12 +169,7 @@ while($row = mysqli_fetch_array($result))
    }
 ?>	
 		</ul>
-			<div class="buttons">
-				<img style="cursor:pointer" src="../img/button_save.gif" onclick="check_input()">&nbsp;
-				<img id="reset_button" style="cursor:pointer" src="../img/button_reset.gif"
-					onclick="reset_form()">
-			</div>
-		</form>
+			
 	</div> <!-- main_content -->
 </section> 
 

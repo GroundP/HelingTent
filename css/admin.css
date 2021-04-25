@@ -6,7 +6,7 @@
 #client_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
 #client_list span { display: inline-block; text-align: center;}
 #client_list input { width: 40px; height: 20px; text-align: center;}
-#client_list button { padding: 3px 10px;}
+#client_list button { padding: 3px 10px; }
 #client_list .col1 { width: 50px; }
 #client_list .col2 { width: 80px; }
 #client_list .col3 { width: 140px; }
