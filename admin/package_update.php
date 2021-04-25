@@ -4,10 +4,10 @@ $id = $_GET["id"];
 $name =  $_POST["pkg_name"];
 $time = $_POST["pkg_time"];
 $weekday_price = $_POST["pkg_weekday"];
-$weekday_price = $_POST["pkg_weekday"];
+$weekend_price = $_POST["pkg_weekend"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update package SET name='$clientName', c.phone_number='$clientPhone', c.package_id = p.id where c.id = $clientId and p.package_name = '$clientPackage'";
+$sql = "update package SET name='$name', time=$time, weekday_price = $weekday_price, weekend_price = $weekend_price where id = $id;";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

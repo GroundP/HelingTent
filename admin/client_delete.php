@@ -1,9 +1,6 @@
 <?php
 
 $clientId = $_GET["id"];
-$clientName =  $_POST["name"];
-$clientPhone = $_POST["phone"];
-$clientPackage = $_POST["package"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
 $sql = "delete from client where id = $clientId";

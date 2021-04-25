@@ -1,13 +1,9 @@
 <?php
 
 $id = $_GET["id"];
-$name =  $_POST["name"];
-$phone = $_POST["phone"];
-$package = $_POST["package"];
-$price = $_POST["price"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update client as c, package as p SET c.name='$name', c.phone_number='$phone', c.profit = $price, c.package_id = p.id where c.id = $id and p.name = '$package'";
+$sql = "delete from stock where id = $id";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

@@ -1,13 +1,10 @@
 <?php
-
 $id = $_GET["id"];
-$name =  $_POST["name"];
-$phone = $_POST["phone"];
-$package = $_POST["package"];
-$price = $_POST["price"];
+$name =  $_POST["stock_name"];
+$qunatity = $_POST["stock_quantity"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update client as c, package as p SET c.name='$name', c.phone_number='$phone', c.profit = $price, c.package_id = p.id where c.id = $id and p.name = '$package'";
+$sql = "update stock SET name='$name', quantity=$qunatity where id = $id";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

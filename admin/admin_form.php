@@ -38,21 +38,30 @@
 			<span class="col1"><?=$clientId?></span>
 			<span class="col2"><input type="text" name="name" value="<?=$clientName?>" style="width:60px;"></span>
 			<span class="col3"><input type="text" name="phone" value="<?=$clientPhone?>" style="width:100px;"></span>
-			<span class="col4"><select name ="package">
+			<span class="col4"><select name ="package" style="width:180px; height:30px;">
                     <?php
 					$pkgResult = mysqli_query($con, $sql);
 					while ($row1 = mysqli_fetch_array($pkgResult)) 
 					{
 						$name = $row1["name"];
+						if ( $name == $clientPackage)
+						{
                     ?>
-                            <option value="<?=$name?>"><?=$name?></option> 
+                            <option value="<?=$name?>" selected><?=$name?></option> 
                     <?php
+						}
+						else
+						{
+					?>
+							<option value="<?=$name?>"><?=$name?></option>
+					<?php 
+						}
 					}
                     ?> 
 						</select></span>
 			<span class="col5"><?=$clientStart?></span>
 			<span class="col6"><?=$clientEnd?></span>
-			<span class="col7"><input type="number" name="phone" value="<?=$clientPrice?>" style="width:70px;" step="1000"></span>
+			<span class="col7"><input type="number" name="price" value="<?=$clientPrice?>" style="width:70px;" step="1000"></span>
 			<span class="col8"><button type="submit">수정</button></span>
 			<span class="col9"><button type="button" onclick="location.href='client_delete.php?id=<?=$clientId?>'">삭제</button></span>
 			</form>
@@ -115,7 +124,6 @@ while($row = mysqli_fetch_array($result))
 			<span class="col4">수정</span>
 			<span class="col5">삭제</span>
 		</li>
-		<form method="post" action="admin_board_delete.php">
 <?php
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
 $sql    = "select * from stock;";
@@ -124,15 +132,17 @@ $result = mysqli_query($con, $sql);
 while($row = mysqli_fetch_array($result))
 {
 	$stockId = $row["id"];
-	$stockName = $row["item"];
+	$stockName = $row["name"];
 	$stockQuantity = $row["quantity"];
 ?>
 		<li>
+			<form method="post" action="stock_update.php?id=<?=$stockId?>">
 			<span class="col1"><?=$stockId?></span>
 			<span class="col2"><input type="text" name="stock_name" value="<?=$stockName?>" style="width:200px;"></span>
-			<span class="col3"><input type="text" name="stock_qauntity" value="<?=$stockQuantity?>" style="width:80px;"></span>
+			<span class="col3"><input type="number" name="stock_quantity" value="<?=$stockQuantity?>" style="width:80px;"></span>
 			<span class="col4"><button type="submit">수정</button></span>
-			<span class="col5"><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></span>
+			<span class="col5"><button type="button" onclick="location.href='stock_delete.php?id=<?=$stockId?>'">삭제</button></span>
+			</form>
 		</li>
 <?php
    }
