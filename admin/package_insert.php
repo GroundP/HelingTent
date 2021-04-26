@@ -1,10 +1,12 @@
 <?php
-$id = $_GET["id"];
-$name =  $_POST["stock_name"];
-$qunatity = $_POST["stock_quantity"];
+
+$name =  $_POST["add_pkg_name"];
+$time = $_POST["add_pkg_time"];
+$weekday_price = $_POST["add_pkg_weekday"];
+$weekend_price = $_POST["add_pkg_weekend"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "update stock SET name='$name', quantity=$qunatity where id = $id";
+$sql = "insert into package (name, time, weekday_price, weekend_price) VALUES ('$name', $time, $weekday_price, $weekend_price)";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )
@@ -14,7 +16,7 @@ if ( !$result )
 }
 else
 {
-    $msg = "수정되었습니다!";
+    $msg = "추가되었습니다!";
 }
 
 echo "<script>alert('{$msg}');</script>";

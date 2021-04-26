@@ -17,7 +17,7 @@ if ( !$result )
 }
 else
 {
-    $msg = "성공했습니다!";
+    $msg = "수정되었습니다!";
 }
 
 echo "<script>alert('{$msg}');</script>";

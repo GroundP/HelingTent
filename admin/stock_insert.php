@@ -1,9 +1,10 @@
 <?php
 
-$id = $_GET["id"];
+$name =  $_POST["add_stock_name"];
+$quantity = $_POST["add_stock_quantity"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "delete from package where id = $id";
+$sql = "insert into stock (name, quantity) VALUES ('$name', $quantity)";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )
@@ -13,7 +14,7 @@ if ( !$result )
 }
 else
 {
-    $msg = "삭제되었습니다!";
+    $msg = "추가되었습니다!";
 }
 
 echo "<script>alert('{$msg}');</script>";

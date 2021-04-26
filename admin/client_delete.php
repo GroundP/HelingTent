@@ -45,7 +45,7 @@ if ( !$result1 || !$result2 || !$result3)
 }
 else
 {
-    $msg = "성공했습니다!";
+    $msg = "삭제되었습니다!";
 }
 
 echo "<script>alert('{$msg}');</script>";
