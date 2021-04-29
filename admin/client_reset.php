@@ -16,9 +16,11 @@ else
     $msg = "초기화 되었습니다!";
 }
 
+mysqli_close($con);
+
 echo "<script>alert('{$msg}');</script>";
 echo "
 <script>
-    location.href = 'index.php';
+    location.href = 'client.php';
 </script>
 ";

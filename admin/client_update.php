@@ -20,9 +20,11 @@ else
     $msg = "수정되었습니다!";
 }
 
+mysqli_close($con);
+
 echo "<script>alert('{$msg}');</script>";
 echo "
 <script>
-    location.href = 'index.php';
+    location.href = 'client.php';
 </script>
 ";
