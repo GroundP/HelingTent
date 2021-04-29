@@ -29,7 +29,6 @@
             	return;
 			}
 
-			alert("재고");
             document.stock_insert_form.submit();
 		}
 	}

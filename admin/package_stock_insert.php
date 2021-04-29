@@ -5,16 +5,14 @@ $stock = $_POST["add_stock"];
 $quantity = $_POST["add_quantity"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
+
 $sql = "select id from package where name='".$package."'";
 $res = mysqli_query($con, $sql);
 $packageId = $res["id"];
 
-echo $packageId;
-echo "\n";
 $sql = "select id from stock where name='".$stock."'";
 $res = mysqli_query($con, $sql);
 $stockId = $res["id"];
-echo $stockId;
 
 $sql = "insert into package_stock VALUES ($packageId, $stockId, $qauntity)";
 $result = mysqli_query($con, $sql);

@@ -67,20 +67,14 @@ while($row = mysqli_fetch_array($result))
 			<span class="col1"></span>
             <span class="col2"><select name ="add_package" style="width:200px; height:30px;">
                     <?php
-					$pkgResult = mysqli_query($con, $sql);
+					$sql2  = "select name from package";
+					$pkgResult = mysqli_query($con, $sql2);
 					while ($row1 = mysqli_fetch_array($pkgResult)) 
 					{
 						$name = $row1["name"];
-						if ( $name == $clientPackage)
-						{
-                    ?>
-                            <option value="<?=$name?>" selected><?=$name?></option> 
-                    <?php
-						} else {
 					?>
-							<option value="<?=$name?>"><?=$name?></option>
-					<?php 
-						}
+                            <option value="<?=$name?>"><?=$name?></option> 
+                    <?php
 					}
                     ?> 
 						</select>
