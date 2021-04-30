@@ -6,21 +6,30 @@ $quantity = $_POST["add_quantity"];
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
 
-$sql = "select id from package where name='".$package."'";
-$res = mysqli_query($con, $sql);
-$packageId = $res["id"];
+//echo $package."<br>";
+//echo $stock."<br>";
+//echo $quantity."<br>";
+//echo $con."<br>";
 
-$sql = "select id from stock where name='".$stock."'";
+$sql = "select id from package where name='$package'";
 $res = mysqli_query($con, $sql);
-$stockId = $res["id"];
+$row = mysqli_fetch_array($res);
+$packageId = $row["id"];
 
-$sql = "insert into package_stock VALUES ($packageId, $stockId, $qauntity)";
+$sql = "select id from stock where name='$stock'";
+$res = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($res);
+$stockId = $row["id"];
+
+$sql = "insert into package_stock (package_id, stock_id, stock_quantity) VALUES ($packageId, $stockId, $quantity)";
 $result = mysqli_query($con, $sql);
-
 if ( !$result || empty($packageId) || empty($stockId) )
 {
-    $res = mysqli_error($con);
-    $msg = "실패했습니다.(".$res.")";
+    echo mysqli_error($con);
+    exit;
+
+    //$err = mysqli_error($con);
+    //$msg = "실패했습니다.(".$err.")";
 }
 else
 {

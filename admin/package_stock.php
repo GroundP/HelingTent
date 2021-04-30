@@ -35,20 +35,20 @@ while($row = mysqli_fetch_array($result))
 	$pkgName = $row["name"];
 ?>
 		<li>
-			<form method="post" action="stock_delete.php?id=<?=$stockId?>">
+			<form method="post" action="package_stock_delete.php?id=<?=$pkgId?>">
 			<span class="col1"><?=$pkgId?></span>
 			<span class="col2"><?=$pkgName?></span>
 			<span class="col3"><select name ="stockList" style="width:180px; height:30px;">
                     <?php
-					$sql2  = "SELECT * FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=".$pkgId;
+					$sql2  = "SELECT * FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId";
 					$Result2 = mysqli_query($con, $sql2);
 					while ($row2 = mysqli_fetch_array($Result2)) 
 					{
 						$name = $row2["name"];
 						$qauntity = $row2["stock_quantity"];
-						$display_name = $qauntity == 1 ? $name : $name."(".$quantity.")";
+						$display_name = $qauntity == 1 ? $name : $name.$quantity;
 						?>
-						<option value="<?=$name?>"><?=$display_name?></option> 
+						<option value="<?=$display_name?>"><?=$display_name?></option> 
 					<?php 
 					}
                     ?> 
