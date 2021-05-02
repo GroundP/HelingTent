@@ -3,10 +3,26 @@
 <head> 
 <meta charset="utf-8">
 <title>힐링텐트 admin</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/ht_ci.jpeg">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script>
+	function confirm_delete(id, name)
+	{
+		var msg = "삭제하시겠습니까? (" +  name + ")";
+		var confirmFlag = confirm(msg);
+
+        if (confirmFlag) 
+        {
+			location.href='package_delete.php?id=' + id;
+        } 
+        else 
+        {
+            return;
+        }
+	}
+
     function check_input(bPkg)
 	{
 		if ( bPkg )
@@ -40,7 +56,7 @@
 </header>
 <section>
 	<div id="admin_box">
-        <h3 id = "package_title">관리자 모드 > 패키지 관리</h3>
+        <h3 id="package_title">관리자 모드 > 패키지 관리</h3>
 		<ul id="package_list">
 		<li class="title">
 			<span class="col1">ID</span>
@@ -72,7 +88,7 @@ while($row = mysqli_fetch_array($result))
 			<span class="col4"><input type="number" name="pkg_weekday" value="<?=$pkgWeekdayPrice?>" style="width:70px;" step="1000"></span>
 			<span class="col5"><input type="number" name="pkg_weekend" value="<?=$pkgWeekendPrice?>" style="width:70px;" step="1000"></span>
 			<span class="col6"><button type="submit">수정</button></span>
-			<span class="col7"><button type="button" onclick="location.href='package_delete.php?id=<?=$pkgId?>'">삭제</button></span>
+			<span class="col7"><button type="button" onclick="confirm_delete(<?=$pkgId?>, '<?=$pkgName?>')">삭제</button></span>
 			</form>
 		</li>
 <?php

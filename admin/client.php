@@ -3,10 +3,26 @@
 <head> 
 <meta charset="utf-8">
 <title>힐링텐트 admin</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/ht_ci.jpeg">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script>
+	function confirm_delete(id, name)
+	{
+		var msg = "삭제하시겠습니까? (" +  name + ")";
+		var confirmFlag = confirm(msg);
+
+        if (confirmFlag) 
+        {
+			location.href='client_delete.php?id=' + id;
+        } 
+        else 
+        {
+            return;
+        }
+	}
+
     function onReset() 
     {
         var confirmFlag = confirm("손님 정보가 모두 사라집니다. 계속하시겠습니까?");
@@ -89,7 +105,7 @@
 			<span class="col6"><?=$clientEnd?></span>
 			<span class="col7"><input type="number" name="price" value="<?=$clientPrice?>" style="width:70px;" step="1000"></span>
 			<span class="col8"><button type="submit">수정</button></span>
-			<span class="col9"><button type="button" onclick="location.href='client_delete.php?id=<?=$clientId?>'">삭제</button></span>
+			<span class="col9"><button type="button" onclick="confirm_delete(<?=$clientId?>, '<?=$clientName?>')">삭제</button></span>
 			</form>
 		</li>
 <?php
@@ -100,6 +116,7 @@
     <form name="clientReset" action="client_reset.php">
         <div class="button">
             <span><button type="button" onclick="onReset()">초기화</button></span>
+            <span><button type="button" onclick="location.href='price_total.php'">매출보기</button></span>
         </div>
     </form>
     </ul>

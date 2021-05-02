@@ -1,9 +1,25 @@
 <?php
 
-$id = $_GET["id"];
+$pkgId = $_GET["id"];
+$stock = $_POST["stockList"];
+
+if ( strpos($stock, "(") !== false)
+{
+    $posNum = mb_strpos($stock, "(");
+    $stockName = mb_substr($stock, 0, $posNum, 'utf-8');
+}
+else
+{
+    $stockName = $stock;
+}
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql = "delete from package_stock where id = $id";
+$sql = "select * from stock where name = '$stockName'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+$stockId = $row["id"];
+
+$sql = "delete from package_stock where package_id = $pkgId and stock_id = $stockId";
 $result = mysqli_query($con, $sql);
 
 if ( !$result )

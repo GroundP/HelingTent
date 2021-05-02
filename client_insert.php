@@ -1,12 +1,11 @@
 <?php
 function finishInsert($msg)
 {
-    echo "<script>alert('{$msg}');</script>";
-    echo "
-	      <script>
-	          location.href = 'index.php';
-	      </script>
-	  ";
+    echo ("<script>
+            alert('{$msg}');
+            history.go(-1)
+	      </script>");
+      exit;
 }
 
     $name   = $_POST["name"];
@@ -30,8 +29,7 @@ function finishInsert($msg)
     $result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
     if ( !$result )
     {
-        echo mysqli_error($con);
-        exit;
+        finishInsert(mysqli_error($con));
     }
 
     $row = mysqli_fetch_array($result);
@@ -55,8 +53,7 @@ function finishInsert($msg)
         $result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
         if ( !$result )
         {
-            echo mysqli_error($con);
-            exit;
+            finishInsert(mysqli_error($con));
         }
         $row = mysqli_fetch_array($result);
         $add_item_id = empty($row['id']) ? 0 : $row['id'];
@@ -67,14 +64,16 @@ function finishInsert($msg)
     start_time, end_time, request, profit, updated_at) ";
 	$sql .= "values('$name', '$phone', $package_id, $add_time, $add_item_id, '$startTime', '$endTime', '$request', $price, now());";
 
-    echo $sql;
-    echo "<br>";
-
 	$result = mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
     if ( !$result )
     {
-        echo mysqli_error($con);
-        exit;
+        $a = mysqli_error($con);
+        $aa = "asdasddwwwww";
+        echo ("<script>
+            alert('{$aa}');
+            history.go(-1)
+	      </script>");
+      exit;
     }
 
     $sql = "select * from package_stock as p LEFT JOIN stock as s ON p.stock_id = s.id where p.package_id = $package_id";

@@ -3,10 +3,26 @@
 <head> 
 <meta charset="utf-8">
 <title>힐링텐트 admin</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/ht_ci.jpeg">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script>
+	function confirm_delete(stockId, stockName)
+	{
+		var msg = "삭제하시겠습니까? (" +  stockName + ")";
+		var confirmFlag = confirm(msg);
+
+        if (confirmFlag) 
+        {
+			location.href='stock_delete.php?id=' + stockId;
+        } 
+        else 
+        {
+            return;
+        }
+	}
+	
     function check_input(bPkg)
 	{
 		if ( bPkg )
@@ -61,12 +77,12 @@ while($row = mysqli_fetch_array($result))
 	$stockQuantity = $row["quantity"];
 ?>
 		<li>
-			<form method="post" action="stock_update.php?id=<?=$stockId?>">
+			<form method="post" name="stock_form<?=$stockId?>" action="stock_update.php?id=<?=$stockId?>">
 			<span class="col1"><?=$stockId?></span>
 			<span class="col2"><input type="text" name="stock_name" value="<?=$stockName?>" style="width:200px;"></span>
 			<span class="col3"><input type="number" name="stock_quantity" value="<?=$stockQuantity?>" style="width:80px;"></span>
 			<span class="col4"><button type="submit">수정</button></span>
-			<span class="col5"><button type="button" onclick="location.href='stock_delete.php?id=<?=$stockId?>'">삭제</button></span>
+			<span class="col5"><button type="button" onclick="confirm_delete(<?=$stockId?>, '<?=$stockName?>')">삭제</button></span>
 			</form>
 		</li>
 <?php

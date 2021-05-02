@@ -3,9 +3,29 @@
 <head> 
 <meta charset="utf-8">
 <title>힐링텐트 admin</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/ht_ci.jpeg">
 <link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
+<script>
+function confirm_delete(id, name, name2)
+	{
+		var stockOptions = document.getElementById("stockList");
+		var stockName = stockOptions.options[stockOptions.selectedIndex].value;
+		
+		var msg = "삭제하시겠습니까? (" +  name + ", " + stockName + ")";
+		var confirmFlag = confirm(msg);
+
+        if (confirmFlag) 
+        {
+			location.href='package_stock_delete.php?id=' + id;
+        } 
+        else 
+        {
+            return;
+        }
+	}
+</script>
 </head>
 <body>
 <header>
@@ -35,18 +55,18 @@ while($row = mysqli_fetch_array($result))
 	$pkgName = $row["name"];
 ?>
 		<li>
-			<form method="post" action="package_stock_delete.php?id=<?=$pkgId?>">
+			<form method="post">
 			<span class="col1"><?=$pkgId?></span>
 			<span class="col2"><?=$pkgName?></span>
-			<span class="col3"><select name ="stockList" style="width:180px; height:30px;">
+			<span class="col3"><select id="stockList" name ="stockList" style="width:180px; height:30px;">
                     <?php
-					$sql2  = "SELECT * FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId";
+					$sql2  = "SELECT ps.stock_quantity, s.name FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId";
 					$Result2 = mysqli_query($con, $sql2);
 					while ($row2 = mysqli_fetch_array($Result2)) 
 					{
 						$name = $row2["name"];
-						$qauntity = $row2["stock_quantity"];
-						$display_name = $qauntity == 1 ? $name : $name.$quantity;
+						$quantity = $row2["stock_quantity"];
+						$display_name = $quantity == 1 ? $name : $name."($quantity)";
 						?>
 						<option value="<?=$display_name?>"><?=$display_name?></option> 
 					<?php 
@@ -55,7 +75,7 @@ while($row = mysqli_fetch_array($result))
 						</select>
                     </span>
 			<span class="col4"></span>
-			<span class="col5"><button type="submit">삭제</button></span>
+			<span class="col5"><button type="submit" onclick="confirm_delete(<?=$pkgId?>, '<?=$pkgName?>', '<?=$display_name?>')">삭제</button></span>
 			</form>
 		</li>
 <?php

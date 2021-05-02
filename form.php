@@ -53,32 +53,49 @@
         <ul id="board_form">
             <li>
                 <span class="col1"><b>*이름 : </b></span>
-                <span class="col2"><input name="name" type="text"></span>
+                <span class="col2"><input name="name" type="text" maxlength="5"></span>
             </li>
             <li>
                 <span class="col1"><b>*연락처 : </b></span>
                 <span class="col2">
-                <input id = "phone" name="phone" type="tel" placeholder="010-1234-5678" pattern="[0-9] {3}-[0-9] {4}-[0-9] {4}"/></span>
+                <select name="phone1" style="width:50px; height:25px;">
+                    <option value="010" selected>010</option>
+                    <option value="010">011</option>
+                    <option value="010">016</option>
+                    <option value="010">017</option>
+                    <option value="010">018</option>
+                    <option value="010">019</option>
+                </select> - 
+                <input name="phone" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"> -
+                <input name="phone" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"></span>
             </li>
             <li>
                 <span class="col1"><b>*패키지 : </b></span>
                 <span class="col2"><select name="package" id="package" style="width:505px; height:30px;">
                 <option value="None">선택하세요</option>
                 <?php
+                date_default_timezone_set('Asia/Seoul');
+                $day = date('w');
+                $bWeekend = ($day == 0 || $day == 5 || $day == 6);
+
                 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
                 $sql = "select * from package";
                 $result = mysqli_query($con, $sql);
-
                 if (!$result)
                     echo "DB 테이블(client)이 생성 전이거나 데이터가 존재하지 않습니다!";
                 else {
-                    while ($row = mysqli_fetch_array($result)) {
+                    while ($row = mysqli_fetch_array($result)) 
+                    {
                         $package_name = $row["name"];
+                        $weekday_price = $row["weekday_price"];
+                        $weekend_price = $row["weekend_price"];
+                        $displayName = $bWeekend ? $package_name." - ".$weekend_price."원" 
+                                                 : $package_name." - ".$weekday_price."원";
                 ?>
-                        <option value="<?= $package_name?>"><?= $package_name?></option>
+                        <option value="<?= $package_name?>"><?= $displayName?></option>
                 <?php
                     }
-                        }
+                }
                 ?> 
                 </select></span>
             </li>

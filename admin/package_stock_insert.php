@@ -21,6 +21,20 @@ $res = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($res);
 $stockId = $row["id"];
 
+$sql = "SELECT * FROM package_stock where package_id=$packageId and stock_id=$stockId";
+$res = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($res);
+if ( !empty($row["id"]) )
+{
+    mysqli_close($con);
+    echo "<script>alert('이미 같은 이름의 재고가 존재합니다!');</script>";
+    echo "
+    <script>
+        location.href = 'package_stock.php';
+    </script>
+    ";
+}
+
 $sql = "insert into package_stock (package_id, stock_id, stock_quantity) VALUES ($packageId, $stockId, $quantity)";
 $result = mysqli_query($con, $sql);
 if ( !$result || empty($packageId) || empty($stockId) )

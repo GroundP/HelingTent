@@ -16,7 +16,7 @@
 #client_list .col7 { width: 80px; }
 #client_list .col8 { width: 70px; }
 #client_list .col9 { width: 70px; }
-#admin_box h3 #package_title { margin: 30px 0 10px 0;}
+#admin_box h3#package_title { margin: 30px 0 10px 0;}
 #package_list { margin: 10px 0 50px 0;}
 #package_list .col1 { width: 50px; }
 #package_list .col2 { width: 340px; }
