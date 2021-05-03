@@ -8,17 +8,18 @@
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script>
-function confirm_delete(id, name, name2)
+	function confirm_delete(id, name)
 	{
-		var stockOptions = document.getElementById("stockList");
-		var stockName = stockOptions.options[stockOptions.selectedIndex].value;
+		var stockOptions = document.getElementById("stockList"+id);
+		var stockName = stockOptions.options[stockOptions.selectedIndex].text;
 		
 		var msg = "삭제하시겠습니까? (" +  name + ", " + stockName + ")";
 		var confirmFlag = confirm(msg);
-
+		
         if (confirmFlag) 
         {
-			location.href='package_stock_delete.php?id=' + id;
+            document.package_stock_form.submit();
+			// location.href='package_stock_delete.php?id=' + id;
         } 
         else 
         {
@@ -55,12 +56,12 @@ while($row = mysqli_fetch_array($result))
 	$pkgName = $row["name"];
 ?>
 		<li>
-			<form method="post">
+			<form method="post" name="package_stock_form" action="package_stock_delete.php?id=<?=$pkgId?>">
 			<span class="col1"><?=$pkgId?></span>
 			<span class="col2"><?=$pkgName?></span>
-			<span class="col3"><select id="stockList" name ="stockList" style="width:180px; height:30px;">
+			<span class="col3"><select id="stockList<?=$pkgId?>" name="stockList<?=$pkgId?>" style="width:180px; height:30px;">
                     <?php
-					$sql2  = "SELECT ps.stock_quantity, s.name FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId";
+					$sql2  = "SELECT ps.stock_quantity, s.name FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId order by s.name";
 					$Result2 = mysqli_query($con, $sql2);
 					while ($row2 = mysqli_fetch_array($Result2)) 
 					{
@@ -68,14 +69,14 @@ while($row = mysqli_fetch_array($result))
 						$quantity = $row2["stock_quantity"];
 						$display_name = $quantity == 1 ? $name : $name."($quantity)";
 						?>
-						<option value="<?=$display_name?>"><?=$display_name?></option> 
+						<option value="<?=$name?>"><?=$display_name?></option> 
 					<?php 
 					}
                     ?> 
 						</select>
                     </span>
 			<span class="col4"></span>
-			<span class="col5"><button type="submit" onclick="confirm_delete(<?=$pkgId?>, '<?=$pkgName?>', '<?=$display_name?>')">삭제</button></span>
+			<span class="col5"><button type="submit" onclick="confirm_delete(<?=$pkgId?>,'<?=$pkgName?>')">삭제</button></span>
 			</form>
 		</li>
 <?php
@@ -101,7 +102,7 @@ while($row = mysqli_fetch_array($result))
                     </span>
             <span class="col3"><select name ="add_stock" style="width:180px; height:30px;">
                     <?php
-					$sql3  = "SELECT * FROM stock";
+					$sql3  = "SELECT * FROM stock order by name";
 					$Result3 = mysqli_query($con, $sql3);
 					while ($row3 = mysqli_fetch_array($Result3)) 
 					{

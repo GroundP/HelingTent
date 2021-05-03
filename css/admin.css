@@ -47,3 +47,18 @@
 #stock_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
 #stock_list span { display: inline-block; text-align: center; }
 #stock_list button { margin: 20px 0 0 20px; padding: 5px 10px;}
+#admin_box h3#add_item_title { margin: 30px 0 10px 0;}
+#add_item_list { margin: 10px 0 30px 0;}
+#add_item_list .col1 { width: 50px; }
+#add_item_list .col2 { width: 330px; }
+#add_item_list .col3 { width: 200px; }
+#add_item_list .col4 { width: 150px; }
+#add_item_list .col5 { width: 40px; }
+#add_item_list .col6 { width: 80px; }
+#add_item_list input { width: 40px; height: 20px; text-align: center;}
+#add_item_list li.title { font-weight: bold; border-top: solid 2px #dddddd; border-bottom: solid 2px #dddddd; background-color: #eeeeee; }
+#add_item_list li.add_format { background-color: #ddeff7; }
+#add_item_list li.title span.col4 { text-align: center; }
+#add_item_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
+#add_item_list span { display: inline-block; text-align: center; }
+#add_item_list button { margin: 20px 0 0 20px; padding: 5px 10px;}

@@ -24,7 +24,7 @@
             document.client_form.name.focus();
             return;
         }
-        if (!document.client_form.phone.value) {
+        if (!document.client_form.phone2.value || !document.client_form.phone3.value) {
             alert("연락처를 입력하세요!");
             document.client_form.phone.focus();
             return;
@@ -60,14 +60,14 @@
                 <span class="col2">
                 <select name="phone1" style="width:50px; height:25px;">
                     <option value="010" selected>010</option>
-                    <option value="010">011</option>
-                    <option value="010">016</option>
-                    <option value="010">017</option>
-                    <option value="010">018</option>
-                    <option value="010">019</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
                 </select> - 
-                <input name="phone" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"> -
-                <input name="phone" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"></span>
+                <input name="phone2" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"> -
+                <input name="phone3" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" style="width:50px; height:25px;"></span>
             </li>
             <li>
                 <span class="col1"><b>*패키지 : </b></span>

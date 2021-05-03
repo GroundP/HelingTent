@@ -1,17 +1,18 @@
 <?php
 
 $pkgId = $_GET["id"];
-$stock = $_POST["stockList"];
+$stock = $_POST["stockList".$pkgId];
+$stockName = $stock;
 
-if ( strpos($stock, "(") !== false)
-{
-    $posNum = mb_strpos($stock, "(");
-    $stockName = mb_substr($stock, 0, $posNum, 'utf-8');
-}
-else
-{
-    $stockName = $stock;
-}
+// if ( strpos($stock, "(") !== false)
+// {
+//     $posNum = mb_strpos($stock, "(");
+//     $stockName = mb_substr($stock, 0, $posNum, 'utf-8');
+// }
+// else
+// {
+//     $stockName = $stock;
+// }
 
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
 $sql = "select * from stock where name = '$stockName'";

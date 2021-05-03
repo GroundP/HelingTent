@@ -9,7 +9,10 @@ function finishInsert($msg)
 }
 
     $name   = $_POST["name"];
-    $phone = $_POST["phone"];
+    (string)$phone1 = $_POST["phone1"];
+    (string)$phone2 = $_POST["phone2"];
+    (string)$phone3 = $_POST["phone3"];
+    $phone = $phone1.$phone2.$phone3;
     $package = $_POST["package"];
     $add_time = isset($_POST["add_time"]) ? $_POST["add_time"] : 0;
     $add_item = isset($_POST["add_item"]) ? $_POST["add_item"] : "";
