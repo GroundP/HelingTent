@@ -53,7 +53,7 @@
         <ul id="board_form">
             <li>
                 <span class="col1"><b>*이름 : </b></span>
-                <span class="col2"><input name="name" type="text" maxlength="5"></span>
+                <span class="col2"><input name="name" type="text" maxlength="5" style="width:187px;"></span>
             </li>
             <li>
                 <span class="col1"><b>*연락처 : </b></span>
