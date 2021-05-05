@@ -109,7 +109,7 @@
                 <option value="None">선택하세요</option>
                     <?php
                     $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-                    $sql = "select * from add_items";
+                    $sql = "select * from add_items order by price asc";
                     $result = mysqli_query($con, $sql);
                     
                     if (!$result)

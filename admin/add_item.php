@@ -8,14 +8,14 @@
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
 <link rel="stylesheet" type="text/css" href="../css/member.css">
 <script>
-	function confirm_delete(stockId, stockName)
+	function confirm_delete(id, name)
 	{
-		var msg = "삭제하시겠습니까? (" +  stockName + ")";
+		var msg = "삭제하시겠습니까? (" +  name + ")";
 		var confirmFlag = confirm(msg);
 
         if (confirmFlag) 
         {
-			location.href='stock_delete.php?id=' + stockId;
+			location.href='add_item_delete.php?id=' + id;
         } 
         else 
         {
@@ -23,30 +23,16 @@
         }
 	}
 	
-    function check_input(bPkg)
+    function check_input()
 	{
-		if ( bPkg )
+		if ( !document.add_item_add_form.add_item_name.value )
 		{
-			if ( !document.pkg_insert_form.add_pkg_name.value )
-			{
-				alert("패키지 이름을 입력하세요!");
-				document.pkg_insert_form.add_pkg_name.focus();
-            	return;
-			}
-
-            document.pkg_insert_form.submit();
+			alert("추가 물품을 입력하세요!");
+			document.add_item_add_form.add_item_name.focus();
+			return;
 		}
-		else
-		{
-			if ( !document.stock_insert_form.add_stock_name.value )
-			{
-				alert("재고 이름을 입력하세요!");
-				document.stock_insert_form.add_stock_name.focus();
-            	return;
-			}
 
-            document.stock_insert_form.submit();
-		}
+		document.add_item_add_form.submit();
 	}
 </script>
 </head>
@@ -68,7 +54,7 @@
 		</li>
 <?php
 $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
-$sql    = "select * from add_items";
+$sql    = "select * from add_items order by price asc";
 $result = mysqli_query($con, $sql);
 
 while($row = mysqli_fetch_array($result))
@@ -80,7 +66,7 @@ while($row = mysqli_fetch_array($result))
 	$stockQuantity = $row["stock_quantity"];
 ?>
 		<li>
-			<form method="post" name="add_item_form<?=$stockId?>" action="stock_update.php?id=<?=$stockId?>">
+			<form method="post" name="add_item_form<?=$itemId?>" action="stock_update.php?id=<?=$itemId?>">
 			<span class="col1"><?=$itemId?></span>
 			<span class="col2"><?=$itemName?></span>
             <?php
@@ -93,7 +79,7 @@ while($row = mysqli_fetch_array($result))
 			<span class="col3"><?=$display_name?></span>
 			<span class="col4"><?=$itemPrice?></span>
 			<span class="col5"></span>
-			<span class="col6"><button type="button" onclick="confirm_delete(<?=$stockId?>, '<?=$stockName?>')">삭제</button></span>
+			<span class="col6"><button type="button" onclick="confirm_delete(<?=$itemId?>, '<?=$itemName?>')">삭제</button></span>
 			</form>
 		</li>
 <?php
@@ -114,14 +100,14 @@ while($row = mysqli_fetch_array($result))
                     $name = $row3["name"];
                     $id = $row3["id"];
             ?>
-                    <option value="$name"><?=$name?></option>
+                    <option value="<?=$name?>"><?=$name?></option>
             <?php
                 }
             ?>
             </select></span>
 			<span class="col4"><input type="number" name="add_item_price" value=1000 style="width:80px;" step="1000"></span>
 			<span class="col5"><input type="number" name="add_item_stock_quantity" value=1 style="width:30px;" max="9" min="1"></span>
-			<span class="col6"><button type="add_button" onclick="check_input(false)">추가</button></span>
+			<span class="col6"><button type="add_button" onclick="check_input()">추가</button></span>
 			</form>
 		</li>
 		</ul>
