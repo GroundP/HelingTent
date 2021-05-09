@@ -74,11 +74,10 @@ while($row = mysqli_fetch_array($result))
                 $result2 = mysqli_query($con, $sql2);
                 $row2 = mysqli_fetch_array($result2);
                 $name = $row2["name"];
-                $display_name = $stockQuantity == 1 ? $name : $name."($stockQuantity)";
             ?>
-			<span class="col3"><?=$display_name?></span>
+			<span class="col3"><?=$name?></span>
 			<span class="col4"><?=$itemPrice?></span>
-			<span class="col5"></span>
+			<span class="col5"><?=$stockQuantity?></span>
 			<span class="col6"><button type="button" onclick="confirm_delete(<?=$itemId?>, '<?=$itemName?>')">삭제</button></span>
 			</form>
 		</li>

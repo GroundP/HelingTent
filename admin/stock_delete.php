@@ -6,7 +6,10 @@ $con = mysqli_connect("localhost", "root", "8077", "healing_tent");
 $sql = "delete from stock where id = $id";
 $result = mysqli_query($con, $sql);
 
-if ( !$result )
+$sql2 = "delete from package_stock where stock_id = $id";
+$result2 = mysqli_query($con, $sql2);
+
+if ( !$result || !$result2)
 {
     $res = mysqli_error($con);
     $msg = "실패했습니다.(".$res.")";

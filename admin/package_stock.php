@@ -26,6 +26,13 @@
             return;
         }
 	}
+
+	function get_selected_value()
+	{
+		var s = document.getElementById("stockList");
+		return s.options[s.selectedIndex].value;
+	}
+
 </script>
 </head>
 <body>
@@ -59,7 +66,7 @@ while($row = mysqli_fetch_array($result))
 			<form method="post" name="package_stock_form" action="package_stock_delete.php?id=<?=$pkgId?>">
 			<span class="col1"><?=$pkgId?></span>
 			<span class="col2"><?=$pkgName?></span>
-			<span class="col3"><select id="stockList<?=$pkgId?>" name="stockList<?=$pkgId?>" style="width:180px; height:30px;">
+			<span class="col3"><select id="stockList<?=$pkgId?>" name="stockList" style="width:180px; height:30px;">
                     <?php
 					$sql2  = "SELECT ps.stock_quantity, s.name FROM package_stock as ps LEFT JOIN stock as s ON ps.stock_id = s.id where ps.package_id=$pkgId order by s.name";
 					$Result2 = mysqli_query($con, $sql2);
